@@ -83,3 +83,7 @@ sudo systemctl restart tomcat
 sudo systemctl stop tomcat
 
 ec2-18-144-10-94.us-west-1.compute.amazonaws.com
+
+Tomcat login page 
+
+http://ec2-18-144-10-94.us-west-1.compute.amazonaws.com:8080/
