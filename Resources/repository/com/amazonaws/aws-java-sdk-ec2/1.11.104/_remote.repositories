@@ -1,0 +1,5 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Thu Mar 14 17:53:12 MST 2019
+aws-java-sdk-ec2-1.11.104-sources.jar>central=
+aws-java-sdk-ec2-1.11.104.jar>central=
+aws-java-sdk-ec2-1.11.104.pom>central=

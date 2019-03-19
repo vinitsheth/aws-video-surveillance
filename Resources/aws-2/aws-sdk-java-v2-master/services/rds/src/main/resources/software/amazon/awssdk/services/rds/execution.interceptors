@@ -1,0 +1,2 @@
+software.amazon.awssdk.services.rds.internal.CopyDbSnapshotPresignInterceptor
+software.amazon.awssdk.services.rds.internal.CreateDbInstanceReadReplicaPresignInterceptor

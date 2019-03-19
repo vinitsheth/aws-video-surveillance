@@ -1,6 +1,6 @@
 RUN WEB Server
 
-ssh -i web-instance-1-key-value.pem  ubuntu@18.144.10.94
+ssh -i web-instance-1-key-value.pem  ubuntu@52.53.217.47
 
 Tomcat
 

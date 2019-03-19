@@ -1,0 +1,2 @@
+software.amazon.awssdk.services.ec2.transform.internal.GeneratePreSignUrlInterceptor
+software.amazon.awssdk.services.ec2.transform.internal.TimestampFormatInterceptor

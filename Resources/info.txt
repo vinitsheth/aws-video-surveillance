@@ -1,0 +1,3 @@
+https://sqs.us-west-1.amazonaws.com/835319047630/receive.fifo
+
+https://sqs.us-west-1.amazonaws.com/835319047630/response.fifo

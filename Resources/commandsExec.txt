@@ -1,0 +1,4 @@
+cd Desktop/Github/aws-video-surveillance/KeyValues
+ssh  -i web-instance-1-key-value.pem  ubuntu@54.153.2.193
+yes
+ls
