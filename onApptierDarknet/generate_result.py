@@ -33,11 +33,10 @@ def download(url, out_path):
 def process(video_path,video_name):
     encoding = 'latin1'
     cmds = ['cd /home/ubuntu/darknet',
-    'Xvfb :1 & export DISPLAY=:1',
     './darknet detector demo cfg/coco.data cfg/yolov3-tiny.cfg  yolvo3-tiny.weights '+ video_path +' -dont_show > result',
     ' python darknet_test.py '
     ]
-    commands = 'cd /home/ubuntu/darknet \n Xvfb :1 & export DISPLAY=:1 \n ./darknet detector demo cfg/coco.data cfg/yolov3-tiny.cfg  tiny.weights '+ video_path +' -dont_show > result \n python darknet_test.py \n'
+    commands = 'cd /home/ubuntu/darknet  \n ./darknet detector demo cfg/coco.data cfg/yolov3-tiny.cfg  tiny.weights '+ video_path +' -dont_show > result \n python darknet_test.py \n'
     # p = subprocess.Popen('/bin/bash', stdin=subprocess.PIPE,
     #             stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     # for cmd in cmds:
@@ -46,12 +45,12 @@ def process(video_path,video_name):
     process = Popen( "/bin/bash", shell=False, universal_newlines=True,
                   stdin=PIPE, stdout=PIPE, stderr=PIPE )                             
     out, err = process.communicate( commands ) 
-    with open('result_label') as f:
+    with open('/home/ubuntu/darknet/result_label') as f:
         content = f.readlines()
     os.remove(video_path)
-    os.remove('result_label')
-    print (str(video_name)+"$"+str(content))
+    os.remove('/home/ubuntu/darknet/result_label')
+    print (str(video_name)+"@"+str(content))
     #print (out,err)
 start = time.time()   
-video_name,video_path = download("http://206.207.50.7/getvideo", 'video')
+video_name,video_path = download("http://206.207.50.7/getvideo", '/home/ubuntu/darknet/video')
 process(video_path,video_name)

@@ -14,6 +14,8 @@ import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.regions.Regions;
+import com.amazonaws.services.ec2.AmazonEC2;
+import com.amazonaws.services.ec2.AmazonEC2ClientBuilder;
 import com.amazonaws.services.sqs.AmazonSQS;
 import com.amazonaws.services.sqs.AmazonSQSClientBuilder;
 import com.amazonaws.services.sqs.model.SendMessageRequest;
@@ -31,6 +33,7 @@ public class VideoSurveillanceApplication {
 	static Map<Integer,String> match;
 	static int currentID = 0;
 	static AmazonSQS sqs;
+	static AmazonEC2 ec2;
 	static String requestQueueUrl = "https://sqs.us-west-1.amazonaws.com/835319047630/request.fifo";
 	static String responseQueueUrl = "https://sqs.us-west-1.amazonaws.com/835319047630/response.fifo";
 	static LoadBalancer myLoadBalancer;
@@ -89,6 +92,10 @@ public class VideoSurveillanceApplication {
 				  .withCredentials(new AWSStaticCredentialsProvider(credentials))
 				  .withRegion(Regions.US_WEST_1)
 				  .build();
+		ec2 = AmazonEC2ClientBuilder.standard()
+				.withCredentials(new AWSStaticCredentialsProvider(credentials))
+				  .withRegion(Regions.US_WEST_1)
+				  .build();
 		System.out.println("SQS object Instintated");
 		
 		//Set Response collector and LoadBalancer
@@ -97,7 +104,7 @@ public class VideoSurveillanceApplication {
 		responseCollctorThread.start();
 		System.out.println("Response Collector Initialized");
 		
-		Thread loadBalancerThread = new Thread(new LoadBalancer(sqs,requestQueueUrl,responseQueueUrl));
+		Thread loadBalancerThread = new Thread(new LoadBalancer(sqs,ec2,requestQueueUrl,responseQueueUrl));
 		loadBalancerThread.start();
 		
 		System.out.println("LoadBalancer Collector Initialized");

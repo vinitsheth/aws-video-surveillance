@@ -30,56 +30,28 @@ public class AppServerApplication {
 	
 	@RequestMapping("/RunScript")
 	String runScript() {
-		String s;
+		
 		String ans = "error oocured at app instance";
 		try{
 			 
-			// run the Unix "ps -ef" command
-            // using the Runtime exec method:
-            Process p = Runtime.getRuntime().exec("python /home/ubuntu/darknet/generate_result.py");
-            
-            BufferedReader stdInput = new BufferedReader(new 
-                 InputStreamReader(p.getInputStream()));
-
-            BufferedReader stdError = new BufferedReader(new 
-                 InputStreamReader(p.getErrorStream()));
-
-            // read the output from the command
-            System.out.println("Here is the standard output of the command:\n");
-            while ((s = stdInput.readLine()) != null) {
-            	ans=s;
-                System.out.println(s);
-            }
-            
-            // read any errors from the attempted command
-            System.out.println("Here is the standard error of the command (if any):\n");
-            while ((s = stdError.readLine()) != null) {
-            	//ans+=s;
-                System.out.println(s);
-            }
-            
-           
+			System.out.println("RunScript called"); 
+			ProcessBuilder pb = new ProcessBuilder("python","/home/ubuntu/darknet/generate_result.py");
+			Process p = pb.start();
+			System.out.println("Process started"); 
+			BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
+			ans = in.readLine();
 			
-			
-//			System.out.println("RunScript called"); 
-//			ProcessBuilder pb = new ProcessBuilder("python","/home/ubuntu/darknet/generate_result.py");
-//			Process p = pb.start();
-//			System.out.println("Process started"); 
-//			BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
-//			int i = p.exitValue();
-//			ans = in.readLine();
-//			
 			
 			String msgs [] = ans.split("@",2);
 			
 			s3.putObject(bucketName,msgs[0], msgs[1]);
-//			
-//			System.out.println(in.readLine());
+			
+			System.out.println(in.readLine());
 			}catch(Exception e){
 				ans = "Exception occured at app tier";
 				System.out.println("Exception occured at app tier");
 				
-				e.printStackTrace();;}
+				System.out.println(e);}
 			
 		
 		
