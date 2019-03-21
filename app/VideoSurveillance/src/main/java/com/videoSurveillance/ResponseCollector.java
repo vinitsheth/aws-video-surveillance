@@ -27,6 +27,8 @@ public class ResponseCollector implements Runnable{
 				int id = Integer.parseInt(msgs[0]);
 				System.out.println("id recieved "+id+" msg: "+msgs[1]);
 				match.put(id, msgs[1]);
+				
+				
 			    sqs.deleteMessage(responseurl, m.getReceiptHandle());
 			}
 		}

@@ -65,6 +65,8 @@ public class VideoSurveillanceApplication {
 //		        .withMessageBody(Integer.toString(myid));
 //		sqs.sendMessage(send_msg_request);
 		System.out.println("Id Generated "+myid);
+		
+		
 		while(match.get(myid)==null);
 		String ans = match.get(myid);
 		match.remove(myid);
