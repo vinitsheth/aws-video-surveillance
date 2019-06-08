@@ -128,8 +128,8 @@ public class AppServerApplication {
 		System.out.println("#################VINIT######################");
 		
 		AWSCredentials credentials = new BasicAWSCredentials(
-				  "AKIAJN7UZDZO7RFC7FFA", 
-				  "bHJ2NMJZjDA3+IyTUsbOE68xDkxJnVcypk9GVPOV"
+				  "", 
+				  ""
 				);
 		
 		s3 = AmazonS3ClientBuilder.standard()
