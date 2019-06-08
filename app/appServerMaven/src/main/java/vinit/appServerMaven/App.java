@@ -24,8 +24,8 @@ public class App
     public static void main( String[] args )
     {
     	AWSCredentials credentials = new BasicAWSCredentials(
-				  "AKIAJN7UZDZO7RFC7FFA", 
-				  "bHJ2NMJZjDA3+IyTUsbOE68xDkxJnVcypk9GVPOV"
+				  "", 
+				  ""
 				);
     	
     	sqs = AmazonSQSClientBuilder.standard()
